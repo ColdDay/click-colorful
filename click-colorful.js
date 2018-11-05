@@ -39,6 +39,7 @@
 	colorBall.prototype.fly = function (x, y, playCount, loopTimer) {
 		if (playCount === -1) return
 		var ballElements = []
+		var fragment = document.createDocumentFragment()
 		for(var i=0; i<this.maxCount; i++) {
 			var ball = doc.createElement('i');
 			ball.className = 'color-ball';
@@ -59,9 +60,10 @@
 			ball.style.transition = 'transform 1s ease-out';
 			ball.style.webkitTransition = 'transform 1s ease-out';
 			ball.style.backgroundColor = getOneRandom(this.colors);
-			doc.body.appendChild(ball);
+			fragment.appendChild(ball);
 			ballElements.push(ball)
 		}
+		doc.body.appendChild(fragment);
 		// 执行动画
 		setTimeout(function () {
 			for(var i=0; i<ballElements.length; i++){
