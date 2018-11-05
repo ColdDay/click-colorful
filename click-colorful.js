@@ -1,12 +1,12 @@
 (function (win, doc) {
 	"use strict";
 	var defaultParams = {
-        colors: ['#eb125f', '#6eff8a', '#6386ff', '#f9f383'],
-        size: 30,
-				maxCount: 50,
-				loop: false,
-				loopTimer: 0
-  }
+		colors: ['#eb125f', '#6eff8a', '#6386ff', '#f9f383'],
+		size: 30,
+		maxCount: 50,
+		loop: false,
+		loopTimer: 0
+  	}
 	function colorBall(params) {
 		if (!params) params = defaultParams
 		this.isAnaOver = false;
@@ -16,7 +16,7 @@
 	}
 	function getOneRandom(arr)
 	{
-    return arr[Math.floor(Math.random()*arr.length)];
+    		return arr[Math.floor(Math.random()*arr.length)];
 	}
 	function _run(ball) {
 		var randomXFlag = Math.random() > 0.5
@@ -76,6 +76,7 @@
 				doc.body.removeChild(ballElements[i])
 			}	
 		}, 1500)
+		// 多次播放
 		if (playCount > 0) {
 			var self = this
 			setTimeout (function () {
