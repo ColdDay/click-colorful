@@ -1,6 +1,6 @@
 # click-colorful
 点击特效，五颜六色的小球绽放
-
+![click-colorful](./demo.gif 'click-colorful')
 > 默认配置
 ```javascript
 var params = {
