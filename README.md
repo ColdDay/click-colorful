@@ -15,10 +15,11 @@ var params = {
  - 引入click-colorful.js ``` <script src="click-colorful.js"></script>```
  - 实力化插件
  ```javascript
- 	var color = new colorBall()
-	// 绽放一次
- 	color.fly(x, y)
-	// 绽放5次,间隔300ms
-	color.fly(x, y, 5, 300)
+//params不传，则走默认配置
+var color = new colorBall(params)
+// 绽放一次
+color.fly(x, y)
+// 绽放5次,间隔300ms
+color.fly(x, y, 5, 300)
 ```
  
