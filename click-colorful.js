@@ -1,5 +1,4 @@
-
-n (win, doc) {
+(function (win, doc) {
 	"use strict";
 	var defaultParams = {
         colors: ['#eb125f', '#6eff8a', '#6386ff', '#f9f383'],
