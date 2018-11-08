@@ -11,12 +11,22 @@
 		}
 	</style>
 	<style>
-	
-	</style>
+	.color-ball{
+    position: fixed;
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius: 1000px;
+    box-sizing:border-box;
+    z-index: 9999;
+    transform: translate3d(0px, 0px, 0px) scale(1);
+    -webkit-transform: translate3d(0px, 0px, 0px) scale(1);
+    transition: transform 0.8s 0s ease-out;
+    -webkit-transition: transform 0.8s 0s ease-out;
+}
+</style>
 </head>
-
 <body>
-	<div class="main" onclick="playColor(event)">
+	<div class="main" onmousedown="playColor(event)">
 		<h1>五颜六色的点击特效</h1>
 	</div>
 	<script src="click-colorful.js"></script>
@@ -27,7 +37,7 @@ function playColor(e){
 	color.fly(e.clientX, e.clientY)
 }
 var color = new colorBall()
-color.fly(document.body.clientWidth/2, document.body.clientHeight/2, 5, 300)
+color.fly(document.body.clientWidth/2, document.body.clientHeight/2, 6, 200)
 </script>
 </body>
 </html>

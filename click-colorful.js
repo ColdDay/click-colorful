@@ -4,21 +4,13 @@
 		colors: ['#eb125f', '#6eff8a', '#6386ff', '#f9f383'],
 		size: 30,
 		maxCount: 30
-  	}
+	}
 	function colorBall(params) {
-		if (params && params.colors) {
-			this.colors = params.colors;
-		}
-		if (params && params.size) {
-			this.size = params.size;
-		}
-		if (params && params.maxCount) {
-			this.maxCount = params.maxCount;
-		}
+		this.params = Object.assign({}, defaultParams, params)
 	}
 	function getOneRandom(arr)
 	{
-    		return arr[Math.floor(Math.random()*arr.length)];
+    return arr[Math.floor(Math.random()*arr.length)];
 	}
 	function _run(ball) {
 		var randomXFlag = Math.random() > 0.5
@@ -42,7 +34,7 @@
 		if (playCount === -1) return
 		var ballElements = []
 		var fragment = document.createDocumentFragment()
-		for(var i=0; i<this.maxCount; i++) {
+		for(var i=0; i<this.params.maxCount; i++) {
 			var ball = doc.createElement('i');
 			ball.className = 'color-ball';
 			var blurX = Math.random() * 10
@@ -51,18 +43,10 @@
 			if (Math.random() > 0.5) blurY = blurY* -1
 			ball.style.left = (x + blurX) + 'px';
 			ball.style.top = (y + blurY) + 'px';
-			ball.style.width = this.size + 'px';
-			ball.style.height = this.size + 'px';
-			ball.style.position = 'fixed';
-			ball.style.borderRadius = '1000px';
-			ball.style.boxSizing = 'border-box';
+			ball.style.width = this.params.size + 'px';
+			ball.style.height = this.params.size + 'px';
 			ball.style.opacity = 0;
-			ball.style.zIndex = 9999;
-			ball.style.transform = 'translate3d(0px, 0px, 0px) scale(1)';
-			ball.style.webkitTransform = 'translate3d(0px, 0px, 0px) scale(1)';
-			ball.style.transition = 'transform 1s ease-out';
-			ball.style.webkitTransition = 'transform 1s ease-out';
-			ball.style.backgroundColor = getOneRandom(this.colors);
+			ball.style.backgroundColor = getOneRandom(this.params.colors);
 			fragment.appendChild(ball);
 			ballElements.push(ball)
 		}
@@ -79,7 +63,7 @@
 			for(var i=0; i<ballElements.length; i++){
 				doc.body.removeChild(ballElements[i])
 			}	
-		}, 1500)
+		}, 3000)
 		// 多次播放
 		if (playCount > 0) {
 			var self = this
