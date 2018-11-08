@@ -32,37 +32,58 @@
 	}
 	colorBall.prototype.fly = function (x, y, playCount, loopTimer) {
 		if (playCount === -1) return
+		if (!loopTimer) loopTimer = 300
 		var ballElements = []
 		var fragment = document.createDocumentFragment()
-		for(var i=0; i<this.params.maxCount; i++) {
+		
+		var ballNum = this.params.maxCount;
+		// 修改轮换播放实现方式，改为一次创建所有，通过延迟执行动画实现
+		if(playCount) {
+			ballNum = this.params.maxCount * playCount;
+		}
+		var loop = 0
+		for(var i=0; i<ballNum; i++) {
+			var curLoop = parseInt(i/this.params.maxCount)
 			var ball = doc.createElement('i');
-			ball.className = 'color-ball';
+			ball.className = 'color-ball ball-loop-' + curLoop;
 			var blurX = Math.random() * 10
 			if (Math.random() > 0.5) blurX = blurX* -1
 			var blurY = Math.random() * 10
 			if (Math.random() > 0.5) blurY = blurY* -1
-			ball.style.left = (x + blurX) + 'px';
-			ball.style.top = (y + blurY) + 'px';
+			ball.style.left = (x) + 'px';
+			ball.style.top = (y) + 'px';
 			ball.style.width = this.params.size + 'px';
 			ball.style.height = this.params.size + 'px';
 			ball.style.position = 'fixed';
 			ball.style.borderRadius = '1000px';
 			ball.style.boxSizing = 'border-box';
-			ball.style.opacity = 0;
 			ball.style.zIndex = 9999;
+			ball.style.opacity = 0;
+			if (curLoop === 0) ball.style.opacity = 1;
 			ball.style.transform = 'translate3d(0px, 0px, 0px) scale(1)';
 			ball.style.webkitTransform = 'translate3d(0px, 0px, 0px) scale(1)';
-			ball.style.transition = 'transform 1s ease-out';
-			ball.style.webkitTransition = 'transform 1s ease-out';
+			ball.style.transition = 'transform 1s ' + curLoop * loopTimer / 1000 + 's ease-out';
+			ball.style.webkitTransition = 'transform 1s ' + curLoop * loopTimer / 1000 + 's ease-out';
 			ball.style.backgroundColor = getOneRandom(this.params.colors);
 			fragment.appendChild(ball);
 			ballElements.push(ball)
+			// 性能优化终极版
+			if (curLoop !== loop) {
+				(function(num){
+					setTimeout(function(){
+						var loopBalls = document.getElementsByClassName('ball-loop-' + num)
+						for(var j = 0; j < loopBalls.length; j++) {
+							loopBalls[j].style.opacity = 1
+						}
+					}, num * loopTimer + 30)
+				})(curLoop)
+				loop = curLoop
+			}
 		}
 		doc.body.appendChild(fragment);
 		// 执行动画
 		setTimeout(function () {
 			for(var i=0; i<ballElements.length; i++){
-				ballElements[i].style.opacity = 1;
 				_run(ballElements[i])
 			}	
 		}, 10)
@@ -72,14 +93,6 @@
 				doc.body.removeChild(ballElements[i])
 			}	
 		}, 3000)
-		// 多次播放
-		if (playCount > 0) {
-			var self = this
-			setTimeout (function () {
-				var last = playCount - 1
-				self.fly(x, y, last, loopTimer)
-			}, loopTimer)
-		}
 	}
 	//兼容CommonJs规范 
 	if (typeof module !== 'undefined' && module.exports) {
