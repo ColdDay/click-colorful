@@ -43,9 +43,17 @@
 			if (Math.random() > 0.5) blurY = blurY* -1
 			ball.style.left = (x + blurX) + 'px';
 			ball.style.top = (y + blurY) + 'px';
-			ball.style.width = this.params.size + 'px';
-			ball.style.height = this.params.size + 'px';
+			ball.style.width = this.size + 'px';
+			ball.style.height = this.size + 'px';
+			ball.style.position = 'fixed';
+			ball.style.borderRadius = '1000px';
+			ball.style.boxSizing = 'border-box';
 			ball.style.opacity = 0;
+			ball.style.zIndex = 9999;
+			ball.style.transform = 'translate3d(0px, 0px, 0px) scale(1)';
+			ball.style.webkitTransform = 'translate3d(0px, 0px, 0px) scale(1)';
+			ball.style.transition = 'transform 1s ease-out';
+			ball.style.webkitTransition = 'transform 1s ease-out';
 			ball.style.backgroundColor = getOneRandom(this.params.colors);
 			fragment.appendChild(ball);
 			ballElements.push(ball)
