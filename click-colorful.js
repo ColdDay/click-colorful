@@ -9,10 +9,10 @@
 		if (params && params.colors) {
 			this.colors = params.colors;
 		}
-		if (size && params.size) {
+		if (params && params.size) {
 			this.size = params.size;
 		}
-		if (size && params.maxCount) {
+		if (params && params.maxCount) {
 			this.maxCount = params.maxCount;
 		}
 	}
