@@ -7,9 +7,7 @@
 var params = {
         colors: ["#eb125f", "#6eff8a", "#6386ff", "#f9f383"], // 自定义颜色
         size: 30, // 小球大小
-	maxCount: 50, // 点击依次出现多少个球
-	loop: false,  // 是否连续多次出现
-	loopTimer: 0  // 连续次数
+	maxCount: 50, // 点击一次出现多少个球
   }
 ```
 > 使用方式
