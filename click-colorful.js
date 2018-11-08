@@ -2,17 +2,15 @@
 	"use strict";
 	var defaultParams = {
 		colors: ['#eb125f', '#6eff8a', '#6386ff', '#f9f383'],
-		size: 30,
-		maxCount: 50,
-		loop: false,
-		loopTimer: 0
+		size: 30
   	}
 	function colorBall(params) {
-		if (!params) params = defaultParams
-		this.isAnaOver = false;
-		this.maxCount = params.maxCount;
-		this.colors = params.colors;
-		this.size = params.size;
+		if (params && params.colors) {
+			this.colors = params.colors;
+		}
+		if (size && params.size) {
+			this.size = params.size;
+		}
 	}
 	function getOneRandom(arr)
 	{
