@@ -31,7 +31,6 @@
 		ball.style.transform = transform;
 	}
 	colorBall.prototype.fly = function (x, y, playCount, loopTimer) {
-		if (playCount === -1) return
 		if (!loopTimer) loopTimer = 300
 		var ballElements = []
 		var fragment = document.createDocumentFragment()
