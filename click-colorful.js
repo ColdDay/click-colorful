@@ -39,9 +39,7 @@
 		// 修改轮换播放实现方式，改为一次创建所有，通过延迟执行动画实现
 		if(playCount) {
 			ballNum = ballNum * playCount;
-		} else {
-			
-		}
+		} 
 		var loop = 0
 		for(var i=0; i<ballNum; i++) {
 			var curLoop = parseInt(i/this.params.maxCount)
@@ -76,7 +74,6 @@
 						for(var j = 0; j < loopBalls.length; j++) {
 							loopBalls[j].style.opacity = 1
 						}
-						console.log(num, loop)
 						if (num === loop) {
 							_clear(ballElements)
 						}
@@ -85,8 +82,10 @@
 				loop = curLoop
 			}
 		}
-		!playCount &&  _clear(ballElements)
+		
 		doc.body.appendChild(fragment);
+		// 延迟删除
+		!playCount &&  _clear(ballElements)
 		// 执行动画
 		setTimeout(function () {
 			for(var i=0; i<ballElements.length; i++){
