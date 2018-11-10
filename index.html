@@ -12,16 +12,23 @@
 	</style>
 
 </head>
-<body onmousedown="playColor(event)">
-	<div class="main">
+<body>
+	<div class="main" ontouchstart="toucuPlayColor(event)" onclick="playColor(event)">
 		<h1>五颜六色的点击特效</h1>
 	</div>
 	<script src="click-colorful.js"></script>
  </body>
 <script>
 function playColor(e){
+	console.log(e)
 	var color = new colorBall()
 	color.fly(e.clientX, e.clientY)
+}
+function toucuPlayColor(e) {
+	var color = new colorBall()
+	color.fly(e.changedTouches[0].clientX,e.changedTouches[0].clientY);
+	e.stopPropagation()
+	e.preventDefault()
 }
 var color = new colorBall()
 color.fly(document.body.clientWidth/2, document.body.clientHeight/2, 10, 300)
